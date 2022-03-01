@@ -1,0 +1,7 @@
+DBMS: MySql
+Nombre: tp_agencia_de_viajes
+Usuario: admin
+Contraseña: 1234
+Nombre del servidor: %
+
+nota: la estrategia de generacion es create.

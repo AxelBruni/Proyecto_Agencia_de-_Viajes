@@ -1,0 +1,11 @@
+--Versión 1.0---
+Trabajo original tal como fue entregado para aprobar el curso de Desarrollo Web
+Fullstack con Java del Polo Tecnológico Silicon Misiones.
+
+Video de 10 minutos explicando el funcionamiento y los detalles más importantes
+del proyecto:
+https://drive.google.com/file/d/1AtIGyI_zuZ-jzg9PvDNQm7frYJmuiN9O/view?usp=sharing
+
+A partir de aquí, el objetivo de las siguientes versiones es mejorar la 
+arquitectura del proyecto, asegurando una correcta escalabilidad y mantenibilidad.
+
