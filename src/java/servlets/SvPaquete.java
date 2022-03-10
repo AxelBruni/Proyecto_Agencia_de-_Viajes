@@ -14,7 +14,7 @@ import logica.PaqueteTuristico;
 import logica.ServicioTuristico;
 
 
-
+/*
 @WebServlet(name = "SvPaquete", urlPatterns = {"/SvPaquete"})
 public class SvPaquete extends HttpServlet {
     
@@ -70,3 +70,4 @@ public class SvPaquete extends HttpServlet {
     }
 
 }
+*/

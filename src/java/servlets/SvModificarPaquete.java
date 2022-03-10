@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
 
-
+/*
 @WebServlet(name = "SvModificarPaquete", urlPatterns = {"/SvModificarPaquete"})
 public class SvModificarPaquete extends HttpServlet {
 
@@ -71,3 +71,4 @@ public class SvModificarPaquete extends HttpServlet {
         return "Short description";
     }
 }
+*/

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import logica.Controladora;
 import logica.Venta;
 
-
+/*
 @WebServlet(name = "SvModificarVenta", urlPatterns = {"/SvModificarVenta"})
 public class SvModificarVenta extends HttpServlet {
     
@@ -103,3 +103,4 @@ public class SvModificarVenta extends HttpServlet {
     }
 
 }
+*/

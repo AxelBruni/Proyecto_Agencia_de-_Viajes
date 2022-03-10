@@ -14,7 +14,7 @@ import logica.Controladora;
 import logica.ServicioTuristico;
 import logica.Venta;
 
-
+/*
 @WebServlet(name = "SvVentas", urlPatterns = {"/SvVentas"})
 public class SvVentas extends HttpServlet {
 
@@ -55,3 +55,4 @@ public class SvVentas extends HttpServlet {
     }
 
 }
+*/

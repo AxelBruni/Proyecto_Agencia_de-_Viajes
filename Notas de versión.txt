@@ -6,6 +6,56 @@ Video de 10 minutos explicando el funcionamiento y los detalles más importantes
 del proyecto:
 https://drive.google.com/file/d/1AtIGyI_zuZ-jzg9PvDNQm7frYJmuiN9O/view?usp=sharing
 
-A partir de aquí, el objetivo de las siguientes versiones es mejorar la 
+A partir de aquí, el propósito de las siguientes versiones es mejorar la 
 arquitectura del proyecto, asegurando una correcta escalabilidad y mantenibilidad.
+
+--Versión 1.0.1--
+
+El primer cambio de esta versión está enfocado en la capa de persistencia.
+
+Esta se apoya en el api JPA de Java con EclipseLink, y su diseño no contempla
+que se puedan utilizar otras tecnologías. Esto es un problema, dado que en el
+futuro puede que se requiera cambiar la DBMS o el framework de persistencia, por
+cuestiones de rendimiento, mantenibilidad o escalabilidad, entre otras.
+
+Para que el cambio de ORM, DBMS o framework sea transparente a la aplicación,
+se aplicarán los patrones DAO y GenericDAO, de manera que la aplicación también
+cumpla con el principio de segregación de interfaces. 
+
+Para esto se crearán las interfaces DAO, como UsuarioDAO, que tendrán la signatura
+de los métodos correspondientes al acceso a la DB de cada clase del modelo de 
+negocio.
+Luego se crearán las implementaciones particulares de estas interfaces, dependiendo
+de cada tecnología. En este caso, sólo se tendrán en cuenta las JPADAOImp, pero
+si fuese necesario se pueden crear implemetaciones JDB o Hibernate, por ejemplo.
+
+Como se desea que la aplicación cumpla con el principio DRY, y cada clase tiene
+métodos muy similares (el código para cada CRUD es practicamente igual para cada 
+clase de negocio), se hará uso del patrón GenericDAO, con el apoyo del api 
+reflection. 
+Para esto, se creará una interfase GenericDAO que contenga los métodos comunes
+a todas las clases de negocio (es decir, los correspondientes al CRUD).
+Las clases DAO extienden de GenericDAO.
+También se creará una clase abstracta GenericDAOJPAImp que implemente a la 
+anterior interfase, y que contenga los métodos genéricos para relativos al CRUD.
+De esta forma, las clases DAOJPAImp serán subclases de esta clase abstracta, e 
+implementarán a las interfases DAO correspondientes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

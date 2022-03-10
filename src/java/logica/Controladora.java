@@ -22,6 +22,7 @@ public class Controladora {
     }
     
     // <editor-fold defaultstate="collapsed" desc="Manejo de Servicios">
+ 
     public void crearServicio(String nombre, String descripcion, String destino, String fecha, String costo) throws ParseException {
         
         ServicioTuristico serv = new ServicioTuristico();
@@ -69,7 +70,7 @@ public class Controladora {
         
         
     }
-    
+
     public List<ServicioTuristico> mostrarServicios() {
         return controlPersis.mostrarServiciosTuristicos();
     }
@@ -129,6 +130,9 @@ public class Controladora {
     
     public Cliente buscarClientePorDni(int dni){
         
+        return controlPersis.buscarClientePorDni(dni);
+        
+        /*
         List<Cliente> clientes = controlPersis.buscarClientePorDni(dni);
         
         if (clientes == null || clientes.isEmpty()) {
@@ -137,6 +141,7 @@ public class Controladora {
         else {
             return clientes.get(0);
         }
+        */
         
     }
     
@@ -216,7 +221,7 @@ public class Controladora {
     public List<PaqueteTuristico> mostrarPaquetes() {
         return controlPersis.mostrarPaquetesTuristicos();
     }
-    
+    /*
     public void crearPaquete(String[] idsServicios) {
         
         PaqueteTuristico paq = new PaqueteTuristico();
@@ -263,11 +268,11 @@ public class Controladora {
         
         controlPersis.actualizarPaqueteTuristico(paq);
     }
-    
+    */
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Manejo de Ventas">
-    
+    /*
     public void crearVentaServicio(int idProd, int idTipoPago, int idClie, int usu, String tipoVenta) {
         
         Venta venta = new Venta();
@@ -288,7 +293,8 @@ public class Controladora {
         controlPersis.crearVenta(venta);
     
     }
-    
+    */
+    /*
     public void modificarVenta(int id, int idProd, int idTipoPago, int usu, String tipoVenta) throws Exception {
         
         Venta venta = this.buscarVenta(id);
@@ -335,7 +341,7 @@ public class Controladora {
         *  Aparte, un objeto date, si le pedimos su año, lo retorna como el año ese menos 1900,
         *  para mostrarlo con dos dígitos.
         */
-        
+     /*   
         List<Venta> ventas = this.mostrarVentas();
         double acumulador = 0;
         
@@ -348,7 +354,7 @@ public class Controladora {
         
         return acumulador;   
     }
-    
+    */
     //</editor-fold>
     
     
@@ -386,3 +392,9 @@ public class Controladora {
     
     
 }
+
+/* TODO buscar JPA TypedQuery with group by clause, esta devuelve un Object arrays con lenght 3.
+* Terminar de crear las clases DAOJPAImp.
+* Implementar patrón abstract factory para IOC.
+* Patrón command y service para el servlet controlador.
+*/

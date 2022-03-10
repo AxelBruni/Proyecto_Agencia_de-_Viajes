@@ -9,6 +9,20 @@ import logica.ServicioTuristico;
 import logica.TipoPago;
 import logica.Usuario;
 import logica.Venta;
+import persistencia.DAO.ClienteDAO;
+import persistencia.DAO.EmpleadoDAO;
+import persistencia.DAO.JPA.ClienteDAOJPAImp;
+import persistencia.DAO.JPA.EmpleadoDAOJPAImp;
+import persistencia.DAO.JPA.PaqueteTuristicoDAOJPAImp;
+import persistencia.DAO.JPA.ServicioTuristicoDAOJPAImp;
+import persistencia.DAO.JPA.TipoPagoDAOJPAImp;
+import persistencia.DAO.JPA.UsuarioDAOJPAImp;
+import persistencia.DAO.JPA.VentaDAOJPAImp;
+import persistencia.DAO.PaqueteTuristicoDAO;
+import persistencia.DAO.ServicioTuristicoDAO;
+import persistencia.DAO.TipoPagoDAO;
+import persistencia.DAO.UsuarioDAO;
+import persistencia.DAO.VentaDAO;
 import persistencia.exceptions.NonexistentEntityException;
 
 /**
@@ -17,14 +31,14 @@ import persistencia.exceptions.NonexistentEntityException;
  */
 public class ControladoraPersistencia {
       
-    private ClienteJpaController clienteJPA = new ClienteJpaController();
-    private EmpleadoJpaController empleadoJPA = new EmpleadoJpaController();
-    private PaqueteTuristicoJpaController paqueteJPA = new PaqueteTuristicoJpaController();
-    private PersonaJpaController personaJPA = new PersonaJpaController();
-    private ServicioTuristicoJpaController servicioJPA = new ServicioTuristicoJpaController();
-    private UsuarioJpaController usuarioJPA = new UsuarioJpaController();
-    private VentaJpaController ventaJPA = new VentaJpaController();
-    private TipoPagoJpaController tipoPagoJPA = new TipoPagoJpaController();
+    private ClienteDAO clienteJPA = new ClienteDAOJPAImp();
+    private EmpleadoDAO empleadoJPA = new EmpleadoDAOJPAImp();
+    private PaqueteTuristicoDAO paqueteJPA = new PaqueteTuristicoDAOJPAImp();
+    //private PersonaJpaController personaJPA = new PersonaJpaController();
+    private ServicioTuristicoDAO servicioJPA = new ServicioTuristicoDAOJPAImp();
+    private UsuarioDAO usuarioJPA = new UsuarioDAOJPAImp();
+    private VentaDAO ventaJPA = new VentaDAOJPAImp();
+    private TipoPagoDAO tipoPagoJPA = new TipoPagoDAOJPAImp();
     
     public ControladoraPersistencia() {     
     }
@@ -33,26 +47,26 @@ public class ControladoraPersistencia {
     
     // <editor-fold defaultstate="collapsed" desc="CRUD Clientes">
     public void crearCliente(Cliente cliente) {       
-        clienteJPA.create(cliente);
+        clienteJPA.insertar(cliente);
     }
 
-    public void borrarCliente(int id) throws NonexistentEntityException{    
-        clienteJPA.destroy(id);
+    public void borrarCliente(Cliente cliente) throws NonexistentEntityException{    
+        clienteJPA.eliminar(cliente);
     }
     
     public void actualizarCliente(Cliente cliente) throws Exception{
-        clienteJPA.edit(cliente);
+        clienteJPA.editar(cliente);
     }
             
     public List<Cliente> mostrarClientes(){
-        return clienteJPA.findClienteEntities();
+        return clienteJPA.buscarTodos();
     }
     
     public Cliente buscarCliente(int id) {
-        return clienteJPA.findCliente(id);
+        return clienteJPA.buscarPorId(id);
     }
     
-    public List<Cliente> buscarClientePorDni(int dni){
+    public Cliente buscarClientePorDni(int dni){
         return clienteJPA.buscarClientePorDni(dni);
     }
     
@@ -60,116 +74,119 @@ public class ControladoraPersistencia {
     
     // <editor-fold defaultstate="collapsed" desc="CRUD Empleados">
     public void crearEmpleado(Empleado empleado){
-        empleadoJPA.create(empleado);
+        empleadoJPA.insertar(empleado);
     }        
-    public void borrarEmpleado(int id) throws NonexistentEntityException{
-        empleadoJPA.destroy(id);
+    public void borrarEmpleado(Empleado empleado) throws NonexistentEntityException{
+        empleadoJPA.eliminar(empleado);
     }        
     public void actualizarEmpleado(Empleado empleado) throws Exception{
-        empleadoJPA.edit(empleado);
+        empleadoJPA.editar(empleado);
     }        
     public List<Empleado> mostrarEmpleados(){
-        return empleadoJPA.findEmpleadoEntities();        
+        return empleadoJPA.buscarTodos();        
     }
     
     public Empleado buscarEmpleado(int idEmp) {
-        return empleadoJPA.findEmpleado(idEmp);
+        return empleadoJPA.buscarPorId(idEmp);
     }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="CRUD Paquetes Turísticos">
     public void crearPaqueteTuristico(PaqueteTuristico paquete){
-        paqueteJPA.create(paquete);
+        paqueteJPA.insertar(paquete);
     }
-    public void borrarPaqueteTuristico(int id) throws NonexistentEntityException{
-        paqueteJPA.destroy(id);
+    public void borrarPaqueteTuristico(PaqueteTuristico paquete) throws NonexistentEntityException{
+        paqueteJPA.eliminar(paquete);
     }        
     public void actualizarPaqueteTuristico(PaqueteTuristico paquete) throws Exception{
-        paqueteJPA.edit(paquete);
+        paqueteJPA.editar(paquete);
     }
     public List<PaqueteTuristico> mostrarPaquetesTuristicos(){
-        return paqueteJPA.findPaqueteTuristicoEntities();
+        return paqueteJPA.buscarTodos();
     }
     
     public PaqueteTuristico buscarPaquete(int codPaq) {
-        return paqueteJPA.findPaqueteTuristico(codPaq);
+        return paqueteJPA.buscarPorId(codPaq);
     }
     // </editor-fold>
        
     // <editor-fold defaultstate="collapsed" desc="CRUD Servicios Turísticos ">
+
     public void crearServicioTuristico(ServicioTuristico servicio) {
-        servicioJPA.create(servicio);
+        servicioJPA.insertar(servicio);
     }
-    public void borrarServicioTuristico(int id) throws NonexistentEntityException {
-        servicioJPA.destroy(id);
+    public void borrarServicioTuristico(ServicioTuristico servicio) throws NonexistentEntityException {
+        servicioJPA.eliminar(servicio);
     }        
     public void actualizarServicioTuristico(ServicioTuristico servicio) throws Exception {
-        servicioJPA.edit(servicio);
+        servicioJPA.editar(servicio);
     }
+
     public List<ServicioTuristico> mostrarServiciosTuristicos() {
-        return servicioJPA.findServicioTuristicoEntities();
+        return servicioJPA.buscarTodos();
     }
-    
+ 
     public ServicioTuristico buscarServicio(int cod) {
-        return servicioJPA.findServicioTuristico(cod);
+        return servicioJPA.buscarPorId(cod);
     }
+
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="CRUD Usuarios ">
     public void crearUsuario(Usuario usuario) {
-        usuarioJPA.create(usuario);
+        usuarioJPA.insertar(usuario);
     }
-    public void borrarUsuario(int id) throws NonexistentEntityException {
-        usuarioJPA.destroy(id);
+    public void borrarUsuario(Usuario usuario) throws NonexistentEntityException {
+        usuarioJPA.eliminar(usuario);
     }        
     public void actualizarUsuario(Usuario usuario) throws Exception {
-        usuarioJPA.edit(usuario);
+        usuarioJPA.editar(usuario);
     }
     public List<Usuario> mostrarUsuarios() {
-        return usuarioJPA.findUsuarioEntities();
+        return usuarioJPA.buscarTodos();
     }
     
     public Usuario buscarUsuario(int id) {
-        return usuarioJPA.findUsuario(id);
+        return usuarioJPA.buscarPorId(id);
     }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="CRUD Ventas ">
     public void crearVenta(Venta venta) {
-        ventaJPA.create(venta);
+        ventaJPA.insertar(venta);
     }
-    public void borrarVenta(int id) throws NonexistentEntityException {
-        ventaJPA.destroy(id);
+    public void borrarVenta(Venta venta) throws NonexistentEntityException {
+        ventaJPA.eliminar(venta);
     }        
     public void actualizarVenta(Venta venta) throws Exception {
-        ventaJPA.edit(venta);
+        ventaJPA.editar(venta);
     }
     public List<Venta> mostrarVentas() {
-        return ventaJPA.findVentaEntities();
+        return ventaJPA.buscarTodos();
     }
     
     public Venta buscarVenta(int id) {
-        return ventaJPA.findVenta(id);
+        return ventaJPA.buscarPorId(id);
     }
     
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="CRUD Tipos de Pago ">
     public void crearTipoPago(TipoPago tipoPago) {
-        tipoPagoJPA.create(tipoPago);
+        tipoPagoJPA.insertar(tipoPago);
     }
-    public void borrarTipoPago(int id) throws NonexistentEntityException {
-        tipoPagoJPA.destroy(id);
+    public void borrarTipoPago(TipoPago tipoPago) throws NonexistentEntityException {
+        tipoPagoJPA.eliminar(tipoPago);
     }        
     public void actualizarTipoPago(TipoPago tipoPago) throws Exception {
-        tipoPagoJPA.edit(tipoPago);
+        tipoPagoJPA.editar(tipoPago);
     }
     public List<TipoPago> mostrarTipoPagos() {
-        return tipoPagoJPA.findTipoPagoEntities();
+        return tipoPagoJPA.buscarTodos();
     }
     
     public TipoPago buscarTipoPago(int id){
-        return tipoPagoJPA.findTipoPago(id);
+        return tipoPagoJPA.buscarPorId(id);
     }
     // </editor-fold>
 

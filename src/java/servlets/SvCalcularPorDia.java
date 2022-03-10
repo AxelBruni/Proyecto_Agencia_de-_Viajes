@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
 
-
+/*
 @WebServlet(name = "SvCalcularPorDia", urlPatterns = {"/SvCalcularPorDia"})
 public class SvCalcularPorDia extends HttpServlet {
     
@@ -57,3 +57,4 @@ public class SvCalcularPorDia extends HttpServlet {
     }
 
 }
+*/
